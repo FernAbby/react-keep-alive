@@ -7,7 +7,7 @@ import { moveToLast, hasCachedPathname } from './utils'
 import { IReactNodeCache, IHtmlElementCache } from './interface'
 
 export interface IKeepProviderProps {
-  maxStack: number
+  maxStack?: number
 }
 
 const keepContainerStyle = {
