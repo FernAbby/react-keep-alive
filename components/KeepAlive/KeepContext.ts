@@ -1,10 +1,11 @@
-import React, { createContext } from 'react'
+import { createContext } from 'react'
+import type { ReactNode } from 'react'
 
 export interface IKeepContext {
-  push: (key: string, children: React.ReactNode) => Promise<HTMLDivElement | null>
+  push: (key: string, children: ReactNode) => Promise<HTMLDivElement | null>
+  remove: (key: string) => void
   hasCached: (key: string) => boolean
   getCache: (key: string) => HTMLDivElement | null
-  remove: (key: string) => void
 }
 
 const KeepContext = createContext<IKeepContext>({
@@ -17,7 +18,7 @@ const KeepContext = createContext<IKeepContext>({
   hasCached() {
     return false
   },
-  getCache: (_key) => {
+  getCache: () => {
     return null
   },
 })

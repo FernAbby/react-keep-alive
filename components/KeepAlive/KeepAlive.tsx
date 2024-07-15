@@ -9,9 +9,9 @@ interface IKeepAliveProps {
   cacheKey: string
 }
 
-// const prevRefs: {
-//   [key: string]: HTMLDivElement | null
-// } = {}
+const prevRefs: {
+  [key: string]: HTMLDivElement | null
+} = {}
 
 const KeepAlive: FC<PropsWithChildren<IKeepAliveProps>> = (props) => {
   const keepAliveRef = useRef<HTMLDivElement | null>(null)
@@ -33,12 +33,12 @@ const KeepAlive: FC<PropsWithChildren<IKeepAliveProps>> = (props) => {
         keepAliveRef.current?.appendChild(pageContent)
       }
       execActivated(props.cacheKey)
-      // prevRefs[props.cacheKey] = ref.current
+      prevRefs[props.cacheKey] = keepAliveRef.current
     }
   })
 
   // 缓存状态: 页面重新缓存入Keeper内
-  const deactivated = useMemoizedFn((_cacheKey: string, keepAliveElement: HTMLDivElement) => {
+  const deactivated = useMemoizedFn((_cacheKey: string, keepContainerElement: HTMLDivElement) => {
     // 页面重新缓存入Keeper内
     const keeper = getCache(_cacheKey)
     // console.log('<============================= Start Of ==========================> ')
@@ -47,9 +47,9 @@ const KeepAlive: FC<PropsWithChildren<IKeepAliveProps>> = (props) => {
     // console.log('ref.current ====>', ref.current)
     // console.log('prevRef ====>', prevRefs[_cacheKey])
     // console.log('Keeper ====>', keeper)
-    const keepAliveElement = keepAliveElement
+    const keepAliveElement = keepContainerElement || prevRefs[_cacheKey]
     if (keepAliveElement?.lastChild && keeper) {
-      execDeactivated(props.cacheKey)
+      execDeactivated(_cacheKey)
       keeper?.appendChild(keepAliveElement.lastChild)
     }
   })
