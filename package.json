@@ -1,8 +1,11 @@
 {
-  "name": "react-keep-alive",
-  "private": true,
-  "version": "0.0.0",
+  "name": "@rc-essential/keep-alive",
+  "version": "1.0.0",
   "type": "module",
+  "files": [
+    "dist",
+    "components"
+  ],
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
@@ -29,6 +32,24 @@
     "eslint-plugin-simple-import-sort": "^12.1.1",
     "eslint-plugin-unused-imports": "^4.0.0",
     "typescript": "^5.2.2",
-    "vite": "^5.3.1"
+    "vite": "^5.3.1",
+    "vite-plugin-dts": "^3.9.1"
+  },
+  "main": "./dist/react-keep-alive.umd.cjs",
+  "module": "./dist/react-keep-alive.js",
+  "types": "./dist/types/components/index.d.ts",
+  "author": "wenzhen",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/FernAbby/react-keep-alive.git"
+  },
+  "packageManager": "pnpm@7.15.0",
+  "engines": {
+    "node": ">=16.14.0"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
   }
 }
