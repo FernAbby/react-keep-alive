@@ -28,6 +28,6 @@ export const useActivated = (cacheKey: string, callback: () => void) => {
 }
 
 // 缓存页面缓存事件
-export const useDeactivatedEvents = (cacheKey: string, callback: () => void) => {
+export const useDeactivated = (cacheKey: string, callback: () => void) => {
   deactivatedEvents[cacheKey] = callback
 }

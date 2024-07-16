@@ -14,7 +14,7 @@ const keepContainerStyle = {
   visibility: 'hidden',
 } as CSSProperties
 
-const KeepProvider: FC<PropsWithChildren<IKeepProviderProps>> = ({ children, maxStack = 30 }) => {
+const KeepProvider: FC<PropsWithChildren<IKeepProviderProps>> = ({ children, maxStack = 100 }) => {
   // 缓存页面栈 记录入栈顺序，用于超出最大限制，把最先入栈数据删除
   const [pageStack, setPageStack] = useState<string[]>([])
   // 用于存储keepAlive组件的key值及children
